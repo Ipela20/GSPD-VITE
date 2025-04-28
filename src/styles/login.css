@@ -1,0 +1,338 @@
+/* Login css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f2f2f2;
+}
+
+/* LAYOUT GLOBAL */
+.auth {
+  display: flex;
+  height: 100vh;
+}
+
+/* PARTIE GAUCHE (branding/logo/info) */
+.auth-left {
+  flex: 1;
+  background-color: rgb(37,140,87); /* Vert institutionnel */
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.auth-left h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #ffcc00; /* Jaune doré */
+  margin-bottom: 0.5rem;
+}
+
+.auth-left p {
+  font-size: 1.2rem;
+  max-width: 80%;
+  line-height: 1.5;
+}
+
+/* PARTIE DROITE (formulaire) */
+.auth-right {
+  flex: 1;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+.form-container {
+  width: 100%;
+  max-width: 350px;
+  overflow: hidden;
+}
+
+.form-container h4 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+  color: rgb(37,140,87);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* INPUTS DE BASE */
+input[type="email"],
+input[type="password"] {
+  border: none;
+  border-bottom: 2px solid rgb(37,140,87);
+  background-color: white;
+  padding: 0.8rem 0.5rem;
+  font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #333;
+  transition: all 0.3s ease;
+  outline: none;
+  width: 100%;
+}
+
+/* FOCUS SUR INPUTS */
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-bottom: 2px solid rgb(37,140,87);
+  box-shadow: 0 2px 0 0 rgb(37,140,87);
+}
+
+/* BOUTON DE CONNEXION */
+button[type="submit"] {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem;
+  background-color: rgb(37,140,87);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3sease, opacity 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: rgb(30, 110, 70); /* plus foncé au hover */
+}
+button[type="submit"]:disabled {
+  background-color: rgb(37, 140, 87); /* on garde la couleur normale */
+  opacity: 0.8; /* légère transparence, mais pas trop */
+  cursor: not-allowed;
+}
+
+/* LOGO SVG */
+.logo {
+  display: block;
+  margin: 2rem auto 0 auto;
+  width: 240px;
+  max-width: 90%;
+  height: auto;
+  fill: white;
+}
+
+/* TITRES & TEXTES À GAUCHE */
+.branding {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #ffeb3b;
+  gap: 1rem;
+  padding: 0 2rem;
+}
+
+.gspd {
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.yellow-line {
+  width: 200px;
+  height: 2px;
+  background-color: #ffeb3b;
+  margin: 0 auto 0rem auto;
+}
+
+.subtitle {
+  font-size: 4rem;
+  font-weight: 700;
+  font-family: 'SF Pro Display', sans-serif;
+}
+
+.multiline {
+  line-height: 1.4;
+  max-width: 90%;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .auth {
+    flex-direction: column;
+    height: auto;
+  }
+
+  /* Partie gauche - occupe moins d’espace */
+  .auth-left {
+    width: 100%;
+    flex: 0 0 40%; /* ✅ Prend 40% de la hauteur verticale si tu veux le réduire */
+    padding: 1.5rem;
+    height: auto;
+  }
+
+  /* Partie droite - occupe plus d’espace */
+  .auth-right {
+    width: 100%;
+    flex: 1; /* ✅ Prend le reste (plus d’espace) */
+    padding: 2rem 1.5rem;
+    height: auto;
+  }
+
+  .gspd {
+    font-size: 2.5rem;
+  }
+
+  .subtitle {
+    font-size: 1.4rem;
+  }
+
+  .branding .subtitle {
+    font-size: 1.6rem;
+  }
+
+  .logo {
+    width: 160px;
+  }
+
+  .form-container {
+    max-width: 100%;
+  }
+
+  .form-actions {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .signin-text {
+    margin-left: auto;
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+}
+
+
+/* MOT DE PASSE + ICONE */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.password-wrapper input {
+  border: none;
+  border-bottom: 2px solid rgb(37,140,87);
+  background-color: white;
+  padding: 0.8rem 2.5rem 0.8rem 0.5rem;
+  font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #333;
+  transition: all 0.3s ease;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.password-wrapper input:focus {
+  border-bottom: 2px solid rgb(37,140,87);
+  box-shadow: 0 2px 0 0 rgb(37,140,87);
+}
+
+/* OEIL POUR AFFICHER LE MOT DE PASSE */
+.toggle-eye {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: #888;
+  z-index: 2;
+  background-color: white;
+  padding-left: 5px;
+}
+
+.toggle-eye:hover {
+  color: rgb(37, 140, 87);
+}
+
+/* LOADER ANIMÉ DANS LE BOUTON */
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 0.8s linear infinite;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* INPUT AVEC ICONES */
+.input-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-icon-wrapper input {
+  padding: 0.8rem 0.5rem 0.8rem 2.2rem;
+  border: none;
+  border-bottom: 2px solid rgb(37,140,87);
+  background-color: white;
+  font-size: 1.1rem;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #333;
+  transition: all 0.3s ease;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-icon-wrapper input:focus {
+  border-bottom: 2px solid rgb(37,140,87);
+  box-shadow: 0 2px 0 0 rgb(37,140,87);
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.5rem;
+  color: #888;
+  font-size: 1.2rem;
+}
+/* ========== MESSAGES ========= */
+.success-text {
+  color: green;
+  font-size: 0.9rem;
+  background-color: #e6f9ec;
+  padding: 0.6rem 1rem;
+  border: 1px solid #2ecc71;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.error-text {
+  color: red;
+  font-size: 0.9rem;
+  background-color: #ffe6e6;
+  padding: 0.6rem 1rem;
+  border: 1px solid #e74c3c;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
