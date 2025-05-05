@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import "../styles/login.css";
-import { Link, useNavigate } from "react-router-dom"; // ✅ useNavigate au lieu de window.location
+import { Link, useNavigate } from "react-router-dom"; // useNavigate au lieu de window.location
 import { Icon } from "@iconify/react";
-import LogoSVG from "./LogoSVG"; //Composant logo SVG
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "../utiles/messages";
 
 
@@ -66,18 +65,29 @@ const SignIn = () => {
 
   return (
     <section className="auth">
-      {/*Branding côté gauche */}
-      <div className="auth-left">
-        <div className="branding">
-          <h1 className="gspd">GSPD</h1>
-          <div className="yellow-line"></div>
-          <p className="subtitle">
-            Bienvenue sur votre Plateforme de Gestion <br />
-            et Suivi des Dépenses
-          </p>
-          <LogoSVG />
-        </div>
+    {/*Branding côté gauche */}
+    <div className="auth-left">
+      <div className="branding">
+      <div className="logo-text-wrapper" tabIndex="-1">
+  <img
+    src="/images/armoirie.png"
+    alt="Logo Présidence du Faso"
+    className="presidence-logo"
+    tabIndex="-1"
+  />
+  <div className="presidence-text">PRÉSIDENCE DU FASO</div>
+</div>
+
+
+      <h1 className="gspd">GSPD</h1>
+        <p className="auth-message">
+        Bienvenue sur<br />
+        votre plateforme de<br />
+        Gestion et Suivi des Dépenses
+        </p>
+
       </div>
+    </div>
 
       {/*Formulaire côté droit */}
       <div className="auth-right">

@@ -1,21 +1,24 @@
 /* Login css */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Roboto', sans-serif;  
   background-color: #f2f2f2;
 }
 
 /* LAYOUT GLOBAL */
 .auth {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
+
 
 /* PARTIE GAUCHE (branding/logo/info) */
 .auth-left {
   flex: 1;
-  background-color: rgb(37,140,87); /* Vert institutionnel */
-  color: white;
+  background-color: rgb(25,135,84); /* Vert intense officiel */
+  color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -24,17 +27,74 @@ body {
   text-align: center;
 }
 
-.auth-left h1 {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: #ffcc00; /* Jaune doré */
-  margin-bottom: 0.5rem;
+.gspd {
+  font-size: 4.8rem; /* moins large pour un rendu plus net */
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  color: #ffcc00;
+  margin-bottom: 0.3rem;
+}
+/* Message de bienvenue */
+.auth-message {
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: 'Roboto', sans-serif;
+  color: #ffe082;
+  max-width: 90%;
+  text-align: center;
 }
 
-.auth-left p {
-  font-size: 1.2rem;
-  max-width: 80%;
-  line-height: 1.5;
+
+/* Regroupe le logo et le texte */
+.logo-text-wrapper {
+  display: flex;
+  flex-direction: column; /* ⬅️ Met les éléments l’un en dessous de l’autre */
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+  user-select: none;
+  caret-color: transparent;
+}
+
+/* Logo agrandi et centré */
+.presidence-logo {
+  width: 130px;
+  height: auto;
+  filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.3));
+}
+
+/* Texte à côté du logo */
+.presidence-text {
+  font-size: 1.3rem;
+  font-weight: 600;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+
+/* Texte GSPD */
+.gspd {
+  font-size: 5.5rem;
+  font-weight: 700;
+  color: #ffcc00;
+  font-family: 'Roboto', sans-serif; /* ✅ Roboto */
+  margin-bottom: 0.1rem;
+  user-select: none;
+}
+
+/* Sous-texte */
+.auth-message {
+  font-size: 2rem;
+  font-weight: 400;
+  color: #ffe082;
+  line-height: 1.6;
+  max-width: 90%;
+  user-select: none;
+  font-family: 'Roboto', sans-serif; /* ✅ Roboto */
 }
 
 /* PARTIE DROITE (formulaire) */
@@ -45,6 +105,7 @@ body {
   justify-content: center;
   align-items: center;
   padding: 2rem;
+  user-select: none;
 }
 
 .form-container {
@@ -57,7 +118,7 @@ body {
   font-size: 1.5rem;
   margin-bottom: 1rem;
   font-weight: bold;
-  color: rgb(37,140,87);
+  color: rgb(25,135,84);
 }
 
 form {
@@ -70,7 +131,7 @@ form {
 input[type="email"],
 input[type="password"] {
   border: none;
-  border-bottom: 2px solid rgb(37,140,87);
+  border-bottom: 2px solid rgb(25,135,84);
   background-color: white;
   padding: 0.8rem 0.5rem;
   font-size: 1.1rem;
@@ -85,8 +146,9 @@ input[type="password"] {
 /* FOCUS SUR INPUTS */
 input[type="email"]:focus,
 input[type="password"]:focus {
-  border-bottom: 2px solid rgb(37,140,87);
-  box-shadow: 0 2px 0 0 rgb(37,140,87);
+  border-bottom: 2px solid rgb(25,135,84);
+  box-shadow: 0 2px 0 0 rgb(25,135,84);
+  font-family: 'Roboto', sans-serif; /*Uniforme */
 }
 
 /* BOUTON DE CONNEXION */
@@ -96,33 +158,20 @@ button[type="submit"] {
   justify-content: center;
   gap: 0.5rem;
   padding: 0.9rem;
-  background-color: rgb(37,140,87);
+  background-color: rgb(25,135,84);
   color: white;
   border: none;
   border-radius: 4px;
   font-weight: 600;
-  cursor: pointer;
+  cursor: pointer; 
   transition: background-color 0.3sease, opacity 0.3s ease;
 }
 
 button[type="submit"]:hover {
   background-color: rgb(30, 110, 70); /* plus foncé au hover */
 }
-button[type="submit"]:disabled {
-  background-color: rgb(37, 140, 87); /* on garde la couleur normale */
-  opacity: 0.8; /* légère transparence, mais pas trop */
-  cursor: not-allowed;
-}
 
-/* LOGO SVG */
-.logo {
-  display: block;
-  margin: 2rem auto 0 auto;
-  width: 240px;
-  max-width: 90%;
-  height: auto;
-  fill: white;
-}
+
 
 /* TITRES & TEXTES À GAUCHE */
 .branding {
@@ -140,7 +189,7 @@ button[type="submit"]:disabled {
   font-size: 5rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 .yellow-line {
@@ -151,9 +200,10 @@ button[type="submit"]:disabled {
 }
 
 .subtitle {
-  font-size: 4rem;
+  font-size: 4.5rem;
   font-weight: 700;
-  font-family: 'SF Pro Display', sans-serif;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.2; /*meilleur espacement vertical */
 }
 
 .multiline {
@@ -162,16 +212,21 @@ button[type="submit"]:disabled {
 }
 
 /* RESPONSIVE */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
   .auth {
     flex-direction: column;
+    min-height: auto;
+  }
+
+html, body {
     height: auto;
+    overflow-x: hidden;
   }
 
   /* Partie gauche - occupe moins d’espace */
   .auth-left {
     width: 100%;
-    flex: 0 0 40%; /* ✅ Prend 40% de la hauteur verticale si tu veux le réduire */
+    flex: 0 0 40%; /* Prend 40% de la hauteur verticale si tu veux le réduire */
     padding: 1.5rem;
     height: auto;
   }
@@ -179,7 +234,7 @@ button[type="submit"]:disabled {
   /* Partie droite - occupe plus d’espace */
   .auth-right {
     width: 100%;
-    flex: 1; /* ✅ Prend le reste (plus d’espace) */
+    flex: 1; /* Prend le reste (plus d’espace) */
     padding: 2rem 1.5rem;
     height: auto;
   }
@@ -215,8 +270,21 @@ button[type="submit"]:disabled {
   .signin-text {
     margin-left: auto;
     font-size: 0.9rem;
+    color: #555;
     white-space: nowrap;
   }
+}
+.forgot-link {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgb(37, 140, 87);
+  text-decoration: none;
+  padding: 0.6rem 0.8rem;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+  color: rgb(37, 140, 87);
 }
 
 
@@ -226,11 +294,12 @@ button[type="submit"]:disabled {
   width: 100%;
   display: flex;
   align-items: center;
+  
 }
 
 .password-wrapper input {
   border: none;
-  border-bottom: 2px solid rgb(37,140,87);
+  border-bottom: 2px solid rgb(25,135,84);
   background-color: white;
   padding: 0.8rem 2.5rem 0.8rem 0.5rem;
   font-size: 1.1rem;
@@ -244,7 +313,7 @@ button[type="submit"]:disabled {
 }
 
 .password-wrapper input:focus {
-  border-bottom: 2px solid rgb(37,140,87);
+  border-bottom: 2px solid rgb(25,135,84);
   box-shadow: 0 2px 0 0 rgb(37,140,87);
 }
 
@@ -263,7 +332,7 @@ button[type="submit"]:disabled {
 }
 
 .toggle-eye:hover {
-  color: rgb(37, 140, 87);
+  color: rgb(25,135,84);
 }
 
 /* LOADER ANIMÉ DANS LE BOUTON */
@@ -277,10 +346,71 @@ button[type="submit"]:disabled {
   margin-right: 0.5rem;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+@media (max-width:480px) {
+  .auth {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .auth-left {
+    flex: unset;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .gspd {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+    line-height: 1.4;
+  }
+
+  .logo {
+    width: 120px;
+    margin-top: 1rem;
+  }
+
+  .auth-right {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-container {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .input-icon-wrapper input {
+    font-size: 1rem;
+    padding: 0.7rem 0.5rem 0.7rem 2rem;
+  }
+
+  button[type="submit"] {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.9rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .signin-text {
+    margin-left: 0;
+    font-size: 0.9rem;
+    text-align: center;
+  }
 }
+
 
 /* INPUT AVEC ICONES */
 .input-icon-wrapper {
@@ -293,7 +423,7 @@ button[type="submit"]:disabled {
 .input-icon-wrapper input {
   padding: 0.8rem 0.5rem 0.8rem 2.2rem;
   border: none;
-  border-bottom: 2px solid rgb(37,140,87);
+  border-bottom: 2px solid rgb(25,135,84);
   background-color: white;
   font-size: 1.1rem;
   font-family: 'Montserrat', sans-serif;
@@ -306,7 +436,7 @@ button[type="submit"]:disabled {
 }
 
 .input-icon-wrapper input:focus {
-  border-bottom: 2px solid rgb(37,140,87);
+  border-bottom: 2px solid rgb(25,135,84);
   box-shadow: 0 2px 0 0 rgb(37,140,87);
 }
 
@@ -320,9 +450,8 @@ button[type="submit"]:disabled {
 .success-text {
   color: green;
   font-size: 0.9rem;
-  background-color: #e6f9ec;
   padding: 0.6rem 1rem;
-  border: 1px solid #2ecc71;
+  border: none;
   border-radius: 4px;
   margin-bottom: 0.5rem;
 }
@@ -330,9 +459,9 @@ button[type="submit"]:disabled {
 .error-text {
   color: red;
   font-size: 0.9rem;
-  background-color: #ffe6e6;
   padding: 0.6rem 1rem;
-  border: 1px solid #e74c3c;
+  border: none;
   border-radius: 4px;
   margin-bottom: 0.5rem;
 }
+

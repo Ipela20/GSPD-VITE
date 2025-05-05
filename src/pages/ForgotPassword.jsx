@@ -12,7 +12,7 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false); // 👈 loader comme dans signin
+  const [loading, setLoading] = useState(false); // loader comme dans signin
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -53,19 +53,31 @@ const ForgotPassword = () => {
 
   return (
     <section className="auth">
-{/* Colonne gauche : Branding et logo */}
-      <div className="auth-left">
-        <div className="branding">
-          <h1 className="gspd">GSPD</h1>
-          <div className="yellow-line"></div>
-          <p className="subtitle">
-            Bienvenue sur votre Plateforme de Gestion <br />
-            et Suivi des Dépenses
-          </p>
-          {/* logo SVG... */}
-          <LogoSVG /> 
-        </div>
+    {/*Branding côté gauche */}
+    <div className="auth-left">
+      <div className="branding">
+      <div className="logo-text-wrapper" tabIndex="-1">
+  <img
+    src="/images/armoirie.png"
+    alt="Logo Présidence du Faso"
+    className="presidence-logo"
+    tabIndex="-1"
+  />
+  <div className="presidence-text">PRÉSIDENCE DU FASO</div>
+</div>
+
+
+      <h1 className="gspd">GSPD</h1>
+        <p className="auth-message">
+        Bienvenue sur<br />
+        votre plateforme de<br />
+        Gestion et Suivi des Dépenses
+        </p>
+
       </div>
+    </div>
+
+    
  {/* Colonne droite : formulaire */}
       <div className="auth-right">
         <div className="form-container">
