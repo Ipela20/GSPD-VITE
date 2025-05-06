@@ -49,7 +49,7 @@ body {
 /* Regroupe le logo et le texte */
 .logo-text-wrapper {
   display: flex;
-  flex-direction: column; /* ⬅️ Met les éléments l’un en dessous de l’autre */
+  flex-direction: column; /*Met les éléments l’un en dessous de l’autre */
   align-items: center;
   gap: 0.6rem;
   margin-bottom: 1rem;
@@ -81,7 +81,7 @@ body {
   font-size: 5.5rem;
   font-weight: 700;
   color: #ffcc00;
-  font-family: 'Roboto', sans-serif; /* ✅ Roboto */
+  font-family: 'Roboto', sans-serif; /* Roboto */
   margin-bottom: 0.1rem;
   user-select: none;
 }
@@ -94,7 +94,7 @@ body {
   line-height: 1.6;
   max-width: 90%;
   user-select: none;
-  font-family: 'Roboto', sans-serif; /* ✅ Roboto */
+  font-family: 'Roboto', sans-serif; /* roboto */
 }
 
 /* PARTIE DROITE (formulaire) */
@@ -130,6 +130,7 @@ form {
 /* INPUTS DE BASE */
 input[type="email"],
 input[type="password"] {
+  background-color: white; /*fond blanc neutre */
   border: none;
   border-bottom: 2px solid rgb(25,135,84);
   background-color: white;
@@ -146,6 +147,7 @@ input[type="password"] {
 /* FOCUS SUR INPUTS */
 input[type="email"]:focus,
 input[type="password"]:focus {
+  background-color: #f0fff4; /*vert pâle au focus */
   border-bottom: 2px solid rgb(25,135,84);
   box-shadow: 0 2px 0 0 rgb(25,135,84);
   font-family: 'Roboto', sans-serif; /*Uniforme */
@@ -167,10 +169,14 @@ button[type="submit"] {
   transition: background-color 0.3sease, opacity 0.3s ease;
 }
 
-button[type="submit"]:hover {
-  background-color: rgb(30, 110, 70); /* plus foncé au hover */
+/* Ajustements bouton au hover */
+button[type="submit"] {
+  transition: all 0.2s ease-in-out;
 }
 
+button[type="submit"]:hover {
+  transform: scale(1.02);
+}
 
 
 /* TITRES & TEXTES À GAUCHE */
@@ -211,13 +217,22 @@ button[type="submit"]:hover {
   max-width: 90%;
 }
 
-/* RESPONSIVE */
-@media (max-width: 480px) {
-  .auth {
-    flex-direction: column;
-    min-height: auto;
+/* Responsive amélioré pour très petits écrans */
+@media (max-width: 360px) {
+  .gspd {
+    font-size: 1.8rem;
   }
 
+  .auth-message {
+    font-size: 1.1rem;
+  }
+
+  .forgot-link {
+    font-size: 0.85rem;
+    display: block;
+    text-align: center;
+    padding: 0.5rem 0;
+  }
 html, body {
     height: auto;
     overflow-x: hidden;
@@ -465,3 +480,15 @@ html, body {
   margin-bottom: 0.5rem;
 }
 
+/* Accessibilité - screen reader only */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

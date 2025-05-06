@@ -1,55 +1,56 @@
 import React, { useState } from "react";
 import "../styles/login.css";
-import { Link, useNavigate } from "react-router-dom"; // useNavigate au lieu de window.location
+import { Link, useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "../utiles/messages";
 
-
 const SignIn = () => {
-  // États pour les champs, erreurs et loading
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [success, setSuccess] = useState("");
 
-  const navigate = useNavigate(); // pour la redirection SPA
+  const navigate = useNavigate();
 
-  // Soumission du formulaire
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
+    const { email, password } = formData;
+
     if (!email || !password) {
       setError(ERROR_MESSAGES.FILL_FIELDS);
       return;
     }
-  
+
     setError("");
     setLoading(true);
-  
+
     try {
       const response = await fetch("http://localhost:8000/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json",
+          Accept: "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
-    
+
       const data = await response.json();
-    
+
       if (!response.ok) {
         throw new Error(data.message || ERROR_MESSAGES.LOGIN_FAIL);
       }
-    
+
       localStorage.setItem("token", data.token);
       setSuccess(SUCCESS_MESSAGES.LOGIN_SUCCESS);
-    
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 1000);
+
+      await new Promise((resolve) => setTimeout(resolve, 800));
+      navigate("/dashboard");
     } catch (err) {
       if (err.message === "Failed to fetch") {
         setError(ERROR_MESSAGES.FETCH_FAIL);
@@ -57,50 +58,46 @@ const SignIn = () => {
         setError(err.message || ERROR_MESSAGES.DEFAULT);
       }
       console.error(err);
-    }
-     finally {
+    } finally {
       setLoading(false);
     }
-  };  
+  };
 
   return (
     <section className="auth">
-    {/*Branding côté gauche */}
-    <div className="auth-left">
-      <div className="branding">
-      <div className="logo-text-wrapper" tabIndex="-1">
-  <img
-    src="/images/armoirie.png"
-    alt="Logo Présidence du Faso"
-    className="presidence-logo"
-    tabIndex="-1"
-  />
-  <div className="presidence-text">PRÉSIDENCE DU FASO</div>
-</div>
-
-
-      <h1 className="gspd">GSPD</h1>
-        <p className="auth-message">
-        Bienvenue sur<br />
-        votre plateforme de<br />
-        Gestion et Suivi des Dépenses
-        </p>
-
+      {/* Partie gauche */}
+      <div className="auth-left">
+        <div className="branding">
+          <div className="logo-text-wrapper" tabIndex="-1">
+          <img
+          src="/images/armoirie.png"
+          alt="Logo Présidence du Faso"
+          className="presidence-logo"
+          tabIndex="-1"
+          />
+            <div className="presidence-text">PRÉSIDENCE DU FASO</div>
+          </div>
+          <h1 className="gspd">GSPD</h1>
+          <p className="auth-message">
+            Bienvenue sur<br />
+            votre plateforme de<br />
+            Gestion et Suivi des Dépenses
+          </p>
+        </div>
       </div>
-    </div>
 
-      {/*Formulaire côté droit */}
+      {/* Partie droite */}
       <div className="auth-right">
         <div className="form-container">
           <h4>Identifiez-vous</h4>
 
-      {/*Messages d’erreur ou succès */}
           {error && <p className="error-text">{error}</p>}
           {success && <p className="success-text">{success}</p>}
 
           <form onSubmit={handleSubmit}>
-            {/*Champ Email avec icône */}
+            {/* Champ Email */}
             <div className="input-icon-wrapper">
+              <label htmlFor="email" className="sr-only">Email</label>
               <span className="input-icon">
                 <Icon icon="mdi:email-outline" />
               </span>
@@ -109,15 +106,16 @@ const SignIn = () => {
                 id="email"
                 name="email"
                 placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                value={formData.email}
+                onChange={handleChange}
                 autoFocus
                 required
               />
             </div>
 
-            {/* Champ Mot de passe avec œil */}
+            {/* Champ Mot de passe */}
             <div className="input-icon-wrapper">
+              <label htmlFor="password" className="sr-only">Mot de passe</label>
               <span className="input-icon">
                 <Icon icon="mdi:lock-outline" />
               </span>
@@ -126,8 +124,8 @@ const SignIn = () => {
                 id="password"
                 name="password"
                 placeholder="Mot de passe"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                value={formData.password}
+                onChange={handleChange}
                 style={{ paddingLeft: "2.2rem", paddingRight: "2.5rem" }}
                 required
               />
@@ -136,14 +134,14 @@ const SignIn = () => {
               </span>
             </div>
 
-            {/*Mot de passe oublié */}
+            {/* Lien mot de passe oublié */}
             <div className="forgot-password">
               <Link to="/mot-de-passe-oublie" className="forgot-link">
                 Mot de passe oublié ?
               </Link>
             </div>
 
-            {/* Bouton avec loader */}
+            {/* Bouton connexion */}
             <button type="submit" disabled={loading}>
               {loading ? (
                 <>
