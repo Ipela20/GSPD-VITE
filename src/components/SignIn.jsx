@@ -70,7 +70,7 @@ const SignIn = () => {
         <div className="branding">
           <div className="logo-text-wrapper" tabIndex="-1">
           <img
-          src="/images/armoirie.png"
+          src="/images/ArmoiriesOK.png"
           alt="Logo Présidence du Faso"
           className="presidence-logo"
           tabIndex="-1"
