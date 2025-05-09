@@ -142,7 +142,7 @@ const SignIn = () => {
             </div>
 
             {/* Bouton connexion */}
-            <button type="submit" disabled={loading}>
+            <button type="submit"disabled={loading || !formData.email || !formData.password}>
               {loading ? (
                 <>
                   <span className="loader"></span> Connexion en cours...
