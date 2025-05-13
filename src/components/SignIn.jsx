@@ -15,7 +15,9 @@ const SignIn = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (error) setError(""); 
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -43,6 +45,11 @@ const SignIn = () => {
       const data = await response.json();
 
       if (!response.ok) {
+        // Vérifie si c’est un problème d’email
+        if (data.message?.toLowerCase().includes("email")) {
+          setError("Email invalide. Entrez un mail valide.");
+          return;
+        }
         throw new Error(data.message || ERROR_MESSAGES.LOGIN_FAIL);
       }
 
@@ -70,7 +77,7 @@ const SignIn = () => {
         <div className="branding">
           <div className="logo-text-wrapper" tabIndex="-1">
           <img
-          src="/images/ArmoiriesOK.png"
+          src="/images/ArmoiriesBFA.png"
           alt="Logo Présidence du Faso"
           className="presidence-logo"
           tabIndex="-1"
@@ -79,9 +86,8 @@ const SignIn = () => {
           </div>
           <h1 className="gspd">GSPD</h1>
           <p className="auth-message">
-            Bienvenue sur<br />
-            votre plateforme de<br />
-            Gestion et Suivi des Dépenses
+            Bienvenue sur l'espace numérique de l'intendance du palais,<br />
+            dédié à la gestion et le suivi des dépenses
           </p>
         </div>
       </div>
@@ -108,6 +114,7 @@ const SignIn = () => {
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
+                className={error.toLowerCase().includes("email") ? "invalid" : ""}
                 autoFocus
                 required
               />

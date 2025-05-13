@@ -55,7 +55,7 @@ const ForgotPassword = () => {
         <div className="branding">
           <div className="logo-text-wrapper" tabIndex="-1">
           <img
-          src="/images/ArmoiriesOK.png"
+          src="/images/ArmoiriesBFA.png"
           alt="Logo Présidence du Faso"
           className="presidence-logo"
           tabIndex="-1"
@@ -64,13 +64,12 @@ const ForgotPassword = () => {
           </div>
           <h1 className="gspd">GSPD</h1>
           <p className="auth-message">
-            Bienvenue sur<br />
-            votre plateforme de<br />
-            Gestion et Suivi des Dépenses
+           Bienvenue sur l'espace numérique de l'intendance du palais,<br />
+           dédié à la gestion et le suivi des dépenses.
           </p>
         </div>
       </div>
-
+      
       {/* Formulaire à droite */}
       <div className="auth-right">
         <div className="form-container">
